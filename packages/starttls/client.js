@@ -27,7 +27,7 @@ module.exports = function starttls({ streamFeatures }) {
     }
 
     await negotiate(entity);
-    const tlsSocket = await upgrade(socket, { host: options.domain });
+    const tlsSocket = await upgrade(socket, { ...entity.options, host: entity.options.domain });
     entity._attachSocket(tlsSocket);
 
     await entity.restart();
